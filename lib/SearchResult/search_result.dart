@@ -48,11 +48,16 @@ class SearchResult extends StatelessWidget {
                         TextButton(
                           onPressed: () {
                             searchController.text = correctSpelling;
-                            MySearchBar(searchController: searchController, tag: 'hero',).getSearchData(context, correctSpelling,start);
+                            MySearchBar(
+                              searchController: searchController,
+                              tag: 'hero',
+                            ).getSearchData(context, correctSpelling, start);
                           },
                           child: Text(
                             'Search instead for $correctSpelling ?',
-                            style: TextStyle(fontWeight: FontWeight.bold,color: Colors.orange),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange),
                           ),
                         ),
                       Divider(
@@ -66,19 +71,35 @@ class SearchResult extends StatelessWidget {
                         indent: 0,
                         endIndent: 0,
                       ),
-                      if(index == searchResults.length - 1 )
+                      if (index == searchResults.length - 1)
                         Row(
                           children: [
-                            TextButton(onPressed: (){
-                              start+=10;
-                              MySearchBar(searchController: searchController, tag: 'hero',).getSearchData(context, correctSpelling,start);
-                            }, child: Text('<prev',style: TextStyle(color: Colors.blue),)),
-                            TextButton(onPressed: (){
-                              if(start >10) {
-                                start -= 10;
-                                MySearchBar(searchController: searchController, tag: 'hero',).getSearchData(context, correctSpelling,start);
-                              }
-                            }, child: Text('<prev',style: TextStyle(color: Colors.blue),)),
+                            TextButton(
+                                onPressed: () {
+                                  MySearchBar(
+                                    searchController: searchController,
+                                    tag: 'hero',
+                                  ).getSearchData(
+                                      context, correctSpelling, start+10);
+                                },
+                                child: Text(
+                                  '<prev',
+                                  style: TextStyle(color: Colors.blue),
+                                )),
+                            TextButton(
+                                onPressed: () {
+                                  if (start > 10) {
+                                    MySearchBar(
+                                      searchController: searchController,
+                                      tag: 'hero',
+                                    ).getSearchData(
+                                        context, correctSpelling, start-10);
+                                  }
+                                },
+                                child: Text(
+                                  '<prev',
+                                  style: TextStyle(color: Colors.blue),
+                                )),
                           ],
                         )
                     ],
