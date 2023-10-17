@@ -1,9 +1,10 @@
 
 class SearchModel{
   String? title;
-  String? displayLink;
+  String? link;
   String? snippet;
   String? formattedURL;
+  String? image;
 
   SearchModel({required this.title,required this.link,required this.snippet,required this.formattedURL,required this.image});
 
