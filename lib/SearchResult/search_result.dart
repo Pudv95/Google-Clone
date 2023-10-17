@@ -32,7 +32,7 @@ class SearchResult extends StatelessWidget {
                 itemCount: searchResults.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(18.0),
                     child: Result(searchModel: searchResults[index]),
                   );
                 },

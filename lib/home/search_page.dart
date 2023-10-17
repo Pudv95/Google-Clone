@@ -68,7 +68,7 @@ class SearchPage extends StatelessWidget {
                 height: 10,
               ),
               Padding(
-                padding: width < 750
+              padding: width < 750
                     ? EdgeInsets.fromLTRB((width * 0.08), 0, (width * 0.08), 0)
                     : EdgeInsets.fromLTRB(
                         min(width * 0.3, 200), 0, min(width * 0.3, 200), 0),
