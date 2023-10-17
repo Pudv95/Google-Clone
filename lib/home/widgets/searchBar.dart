@@ -36,7 +36,9 @@ class MySearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hero(
       tag: tag,
-      child: TextField(
+      child:Material(
+        type: MaterialType.transparency,
+      child:TextField(
         controller: searchController,
         onSubmitted: (query) async {
           getSearchData(context,query);
@@ -58,6 +60,7 @@ class MySearchBar extends StatelessWidget {
           enabledBorder: OutlineInputBorder( borderRadius: BorderRadius.circular(50),borderSide: const BorderSide(color: Colors.white12)),
         ),
       ),
+        ),
     );
   }
 }
