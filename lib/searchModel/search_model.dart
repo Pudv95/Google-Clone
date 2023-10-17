@@ -9,7 +9,7 @@ class SearchModel{
   SearchModel({required this.title,required this.link,required this.snippet,required this.formattedURL,required this.image});
 
   factory SearchModel.fromMap(Map<String,dynamic> temp){
-    return SearchModel(title: temp['title'], link: temp['link'], snippet: temp['snippet'], formattedURL: temp['formattedUrl'], image: temp['pagemap']['metatags'][0]['og:image']);
+    return SearchModel(title: temp['title'], link: temp['link'], snippet: temp['snippet'], formattedURL: temp['formattedUrl'], image: (temp['pagemap']['metatags'] != null)?temp['pagemap']['metatags'][0]['og:image']:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgVV4efvwIDr4l7uThqB1tnCmkdMLSqZYPs-cptY7TZQ&s");
   }
 }
 
