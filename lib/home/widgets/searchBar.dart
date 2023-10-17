@@ -20,9 +20,14 @@ class MySearchBar extends StatelessWidget {
       List<SearchModel> searchResults = (response1['items'] as List)
           .map((item) => SearchModel.fromMap(item))
           .toList();
-      await Navigator.push(
+
+      String correctSpelling = "shi_hai";
+      if(response1.containsKey('spelling')){
+        correctSpelling = response1['spelling']['correctedQuery'];
+      }
+      await Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => SearchResult(searchResults: searchResults,searchController: searchController,)),
+        MaterialPageRoute(builder: (context) => SearchResult(searchResults: searchResults,searchController: searchController,correctSpelling: correctSpelling,)),
       );
       print(searchResults[0].image);
     }

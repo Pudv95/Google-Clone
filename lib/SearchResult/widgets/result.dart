@@ -17,14 +17,23 @@ class Result extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextButton(
-                  onPressed: () {
-                    launchUrl(Uri.parse(searchModel.link ?? "www.google.com"));
-                  },
-                  child: Text(//#4f8dddff
-                    searchModel.title ?? "got some error",
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color.fromRGBO(79, 141, 221, 1)),
-                  )),
+              Wrap(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(searchModel.image ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        launchUrl(Uri.parse(searchModel.link ?? "www.google.com"));
+                      },
+                      child: Text(
+
+                        searchModel.title ?? "got some error",
+                        maxLines: 2,
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color.fromRGBO(79, 141, 221, 1)),
+                      )),
+                ],
+              ),
               TextButton(
                   onPressed: () {
                     launchUrl(
