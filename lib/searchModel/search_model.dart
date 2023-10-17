@@ -8,8 +8,8 @@ class SearchModel{
 
   SearchModel({required this.title,required this.link,required this.snippet,required this.formattedURL,required this.image});
 
-  SearchModel fromMap(Map<String,dynamic> temp){
-    return SearchModel(title: temp['title'], link: temp['link'], snippet: temp['snippet'], formattedURL: temp['formattedURL'], image: temp['image']);
+  factory SearchModel.fromMap(Map<String,dynamic> temp){
+    return SearchModel(title: temp['title'], link: temp['link'], snippet: temp['snippet'], formattedURL: temp['formattedUrl'], image: temp['pagemap']['metatags'][0]['og:image']);
   }
 }
 

@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:googleclone/home/widgets/searchBar.dart';
-import 'package:googleclone/widgets/result.dart';
+import 'package:googleclone/SearchResult/widgets/result.dart';
 import '../searchModel/search_model.dart';
 
 class SearchResult extends StatelessWidget {
@@ -15,7 +15,7 @@ class SearchResult extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color.fromRGBO(32, 33, 36, 1),
+      backgroundColor: const Color.fromRGBO(40, 40, 40, 1),
       body: SafeArea(
         child: Column(
           children: [
@@ -31,9 +31,12 @@ class SearchResult extends StatelessWidget {
               child: ListView.builder(
                 itemCount: searchResults.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Result(searchModel: searchResults[index]),
+                  return Column(
+                    children: [
+                      Divider(color: Colors.grey,indent: 0,endIndent: 0,),
+                      Result(searchModel: searchResults[index]),
+                      Divider(color: Colors.grey,indent: 0,endIndent: 0,)
+                    ],
                   );
                 },
               ),
