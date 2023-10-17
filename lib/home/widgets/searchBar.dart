@@ -10,8 +10,8 @@ class MySearchBar extends StatelessWidget {
   final String tag;
   const MySearchBar({super.key, required this.searchController,required this.tag});
 
-  Future<void> getSearchData(context,String query) async {
-    var request = http.Request('GET', Uri.parse('https://www.googleapis.com/customsearch/v1?key=AIzaSyBxMwLzAhJ58R1kIt7jNeomXEm_2Exsp_g&q=$query&cx=5311d6e53f2da48e6'));
+  Future<void> getSearchData(context,String query,int start) async {
+    var request = http.Request('GET', Uri.parse('https://www.googleapis.com/customsearch/v1?key=AIzaSyBxMwLzAhJ58R1kIt7jNeomXEm_2Exsp_g&q=$query&cx=5311d6e53f2da48e6&start=$start'));
 
     http.StreamedResponse response = await request.send();
 
@@ -27,7 +27,7 @@ class MySearchBar extends StatelessWidget {
       }
       await Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => SearchResult(searchResults: searchResults,searchController: searchController,correctSpelling: correctSpelling,)),
+        MaterialPageRoute(builder: (context) => SearchResult(searchResults: searchResults,searchController: searchController,correctSpelling: correctSpelling, start: start,)),
       );
       print(searchResults[0].image);
     }
@@ -36,6 +36,7 @@ class MySearchBar extends StatelessWidget {
     }
 
   }
+  final int start = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class MySearchBar extends StatelessWidget {
       child:TextField(
         controller: searchController,
         onSubmitted: (query) async {
-          getSearchData(context,query);
+          getSearchData(context,query,start);
         },
         style: const TextStyle(color: Colors.white),
         decoration:  InputDecoration(

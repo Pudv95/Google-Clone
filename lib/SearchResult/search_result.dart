@@ -9,11 +9,13 @@ class SearchResult extends StatelessWidget {
   final List<SearchModel> searchResults;
   final String correctSpelling;
   final TextEditingController searchController;
+  final int start;
   const SearchResult(
       {super.key,
       required this.searchResults,
       required this.searchController,
-      required this.correctSpelling});
+      required this.correctSpelling,
+      required this.start});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class SearchResult extends StatelessWidget {
                         TextButton(
                           onPressed: () {
                             searchController.text = correctSpelling;
-                            MySearchBar(searchController: searchController, tag: 'hero',).getSearchData(context, correctSpelling);
+                            MySearchBar(searchController: searchController, tag: 'hero',).getSearchData(context, correctSpelling,start);
                           },
                           child: Text(
                             'Search instead for $correctSpelling ?',
@@ -63,7 +65,22 @@ class SearchResult extends StatelessWidget {
                         color: Colors.grey,
                         indent: 0,
                         endIndent: 0,
-                      )
+                      ),
+                      if(index == searchResults.length - 1 )
+                        Row(
+                          children: [
+                            TextButton(onPressed: (){
+                              start+=10;
+                              MySearchBar(searchController: searchController, tag: 'hero',).getSearchData(context, correctSpelling,start);
+                            }, child: Text('<prev',style: TextStyle(color: Colors.blue),)),
+                            TextButton(onPressed: (){
+                              if(start >10) {
+                                start -= 10;
+                                MySearchBar(searchController: searchController, tag: 'hero',).getSearchData(context, correctSpelling,start);
+                              }
+                            }, child: Text('<prev',style: TextStyle(color: Colors.blue),)),
+                          ],
+                        )
                     ],
                   );
                 },
