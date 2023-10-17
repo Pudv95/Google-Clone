@@ -72,7 +72,7 @@ class SearchPage extends StatelessWidget {
                     ? EdgeInsets.fromLTRB((width * 0.08), 0, (width * 0.08), 0)
                     : EdgeInsets.fromLTRB(
                         min(width * 0.3, 200), 0, min(width * 0.3, 200), 0),
-                child: MySearchBar(searchController: searchController),
+                child: MySearchBar(searchController: searchController,tag: 'searchBar',),
               ),
               const SizedBox(height: 10),
               const Padding(
