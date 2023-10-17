@@ -73,31 +73,31 @@ class SearchResult extends StatelessWidget {
                       ),
                       if (index == searchResults.length - 1)
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
                                 onPressed: () {
-                                  MySearchBar(
-                                    searchController: searchController,
-                                    tag: 'hero',
-                                  ).getSearchData(
-                                      context, correctSpelling, start+10);
-                                },
-                                child: Text(
-                                  '<prev',
-                                  style: TextStyle(color: Colors.blue),
-                                )),
-                            TextButton(
-                                onPressed: () {
-                                  if (start > 10) {
+                                  if(start > 10){
                                     MySearchBar(
                                       searchController: searchController,
                                       tag: 'hero',
                                     ).getSearchData(
-                                        context, correctSpelling, start-10);
+                                        context, correctSpelling, start - 10);
                                   }
                                 },
                                 child: Text(
-                                  '<prev',
+                                  '<- Prev',
+                                  style: TextStyle(color: Colors.blue),
+                                )),
+                            TextButton(
+                                onPressed: () {
+                                    MySearchBar(
+                                      searchController: searchController,
+                                      tag: 'hero',
+                                    ).getSearchData(context, correctSpelling, start+10);
+                                },
+                                child: Text(
+                                  'Next ->',
                                   style: TextStyle(color: Colors.blue),
                                 )),
                           ],
