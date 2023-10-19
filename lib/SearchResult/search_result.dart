@@ -41,8 +41,7 @@ class _SearchResultState extends State<SearchResult> {
                 tag: 'searchBar',
               ),
             ),
-            SizedBox(
-              height: height * 0.86,
+            Expanded(
               child: ListView.builder(
                 itemCount: widget.searchResults.length,
                 itemBuilder: (BuildContext context, int index) {
