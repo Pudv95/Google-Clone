@@ -13,8 +13,8 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return GestureDetector(
-      onTap: () {
+    return Listener(
+      onPointerDown: (e) {
         FocusScope.of(context).unfocus();
       },
       child: DefaultTabController(
