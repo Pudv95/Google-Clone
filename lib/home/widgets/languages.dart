@@ -11,24 +11,14 @@ class Languages extends StatefulWidget {
 class _LanguagesState extends State<Languages> {
   @override
   Widget build(BuildContext context) {
-    return const Wrap(
+    return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       alignment: WrapAlignment.center,
       children: [
-        Text(
-          'Google offered in:',
-          style: TextStyle(color: Colors.white),
-        ),
-        CustomTextButtons(title: 'हिन्दी', isLanguage: true,),
-        CustomTextButtons(title: 'বাংলা', isLanguage: true),
-        CustomTextButtons(title: 'తెలుగు', isLanguage: true),
-        CustomTextButtons(title: 'मराठी', isLanguage: true),
-        CustomTextButtons(title: 'தமிழ்', isLanguage: true),
-        CustomTextButtons(title: 'ગુજરાતી', isLanguage: true),
-        CustomTextButtons(title: 'ಕನ್ನಡ', isLanguage: true),
-        CustomTextButtons(title: 'മലയാളം', isLanguage: true),
-        CustomTextButtons(title: 'ਪੰਜਾਬੀ', isLanguage: true),
-      ],
+        'हिन्दी','বাংলা','తెలుగు','मराठी','தமிழ்','ગુજરાતી','ಕನ್ನಡ','ಕನ್ನಡ','മലയാളം','ਪੰਜਾਬੀ'
+      ].map((language) =>
+           CustomTextButtons(title: language,isLanguage: true,)
+      ).toList(),
     );
   }
 }

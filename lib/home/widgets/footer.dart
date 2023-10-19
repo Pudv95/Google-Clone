@@ -11,23 +11,16 @@ class Footer extends StatefulWidget {
 class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
-    return const Wrap(
+    return Wrap(
       alignment: WrapAlignment.center,
-      children:  [
-        CustomTextButtons(title: 'About', isLanguage: false),
-        SizedBox(width: 5),
-        CustomTextButtons(title: 'Advertising', isLanguage: false),
-        SizedBox(width: 5),
-        CustomTextButtons(title: 'Business', isLanguage: false),
-        SizedBox(width:5),
-        CustomTextButtons( title: 'How Search Works', isLanguage: false),
-        SizedBox(width: 5),
-        CustomTextButtons(title: 'Privacy', isLanguage: false),
-        SizedBox(width: 5),
-        CustomTextButtons(title: 'Terms', isLanguage: false),
-        SizedBox(width: 5),
-        CustomTextButtons(title: 'Settings', isLanguage: false),
-      ],
+      children: ['About', 'Advertising', 'Business', 'How Search Works', 'Privacy', 'Terms', 'Settings',]
+          .map(
+            (title) => Padding(
+              padding: const EdgeInsets.only(right: 5),
+              child: CustomTextButtons(title: title),
+            ),
+          )
+          .toList(),
     );
   }
 }
