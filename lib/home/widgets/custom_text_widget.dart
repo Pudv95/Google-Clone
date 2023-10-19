@@ -5,7 +5,7 @@ class CustomTextButtons extends StatefulWidget {
   final String title;
   final bool isLanguage;
   const CustomTextButtons(
-      {super.key, required this.title, required this.isLanguage});
+      {super.key, required this.title, this.isLanguage = false});
 
   @override
   State<CustomTextButtons> createState() => _CustomTextButtonsState();
