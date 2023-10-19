@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:googleclone/home/widgets/searchBar.dart';
 import 'package:googleclone/SearchResult/widgets/result.dart';
 import '../searchModel/search_model.dart';
-import 'package:googleclone/home/widgets/searchBar.dart';
 
-class SearchResult extends StatelessWidget {
+class SearchResult extends StatefulWidget {
   final List<SearchModel> searchResults;
   final String correctSpelling;
   final TextEditingController searchController;
@@ -17,6 +16,11 @@ class SearchResult extends StatelessWidget {
       required this.correctSpelling,
       required this.start});
 
+  @override
+  State<SearchResult> createState() => _SearchResultState();
+}
+
+class _SearchResultState extends State<SearchResult> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -33,71 +37,60 @@ class SearchResult extends StatelessWidget {
                   : EdgeInsets.fromLTRB(
                       min(width * 0.3, 200), 0, min(width * 0.3, 200), 0),
               child: MySearchBar(
-                searchController: searchController,
+                searchController: widget.searchController,
                 tag: 'searchBar',
               ),
             ),
             SizedBox(
               height: height * 0.86,
               child: ListView.builder(
-                itemCount: searchResults.length,
+                itemCount: widget.searchResults.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
-                      if (correctSpelling != "shi_hai" && index == 0)
+                      if (widget.correctSpelling != "shi_hai" && index == 0)
                         TextButton(
                           onPressed: () {
-                            searchController.text = correctSpelling;
+                            widget.searchController.text = widget.correctSpelling;
                             MySearchBar(
-                              searchController: searchController,
+                              searchController: widget.searchController,
                               tag: 'hero',
-                            ).getSearchData(context, correctSpelling, start);
+                            ).getSearchData(context, widget.correctSpelling, widget.start,widget.searchResults,true);
                           },
                           child: Text(
-                            'Search instead for $correctSpelling ?',
-                            style: TextStyle(
+                            'Search instead for ${widget.correctSpelling} ?',
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.orange),
                           ),
                         ),
-                      Divider(
+                      const Divider(
                         color: Colors.grey,
                         indent: 0,
                         endIndent: 0,
                       ),
-                      Result(searchModel: searchResults[index]),
-                      Divider(
+                      Result(searchModel: widget.searchResults[index]),
+                      const Divider(
                         color: Colors.grey,
                         indent: 0,
                         endIndent: 0,
                       ),
-                      if (index == searchResults.length - 1)
+                      if (index == widget.searchResults.length - 1)
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
                                 onPressed: () {
-                                  if(start > 10){
-                                    MySearchBar(
-                                      searchController: searchController,
-                                      tag: 'hero',
-                                    ).getSearchData(
-                                        context, correctSpelling, start - 10);
-                                  }
+                                  print(widget.searchResults);
+                                    setState(() {
+                                      MySearchBar(
+                                        searchController: widget.searchController,
+                                        tag: 'hero',
+                                      ).getSearchData(context, widget.correctSpelling, widget.start+10,widget.searchResults,true);
+                                    });
                                 },
-                                child: Text(
-                                  '<- Prev',
-                                  style: TextStyle(color: Colors.blue),
-                                )),
-                            TextButton(
-                                onPressed: () {
-                                    MySearchBar(
-                                      searchController: searchController,
-                                      tag: 'hero',
-                                    ).getSearchData(context, correctSpelling, start+10);
-                                },
-                                child: Text(
-                                  'Next ->',
+                                child: const Text(
+                                  'More ->',
                                   style: TextStyle(color: Colors.blue),
                                 )),
                           ],
